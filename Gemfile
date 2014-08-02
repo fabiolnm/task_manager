@@ -6,6 +6,7 @@ gem 'rails', '4.1.4'
 gem 'rails-i18n'
 
 gem 'slim'
+gem 'slim-rails'
 
 # deploy to a postgres database
 gem 'pg'
