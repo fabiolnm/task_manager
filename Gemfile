@@ -41,11 +41,11 @@ gem 'spring',        group: :development
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
 group :development, :test do
   gem "minitest-rails", github: "blowmage/minitest-rails"
+
+  # byebug has better Ruby2 support over debugger
+  gem 'byebug'
 end
 
 group :test do
