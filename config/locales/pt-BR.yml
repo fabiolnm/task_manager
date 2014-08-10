@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      task_list:
+        one: Lista de Tarefas
+        other: Listas de Tarefas
+
+  actions:
+    create: Criar %{model_name}
