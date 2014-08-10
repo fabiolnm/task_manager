@@ -1,14 +1,15 @@
 = form_for @task_list, html: { class: "form-inline" } do |f|
-  - if @task_list.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@task_list.errors.count, "error")} prohibited this task_list from being saved:"
-      ul
-        - @task_list.errors.full_messages.each do |message|
-          li = message
+  - error = @task_list.errors[:name].presence
 
-  .form-group
+  = content_tag :div, class: "form-group #{'has-error' if error}"
+    - if error
+      = f.label :name, error.first, class: 'control-label'
+      br
+    - else
+      = f.label :name, class: 'sr-only'
+
     = f.text_field :name, class: "form-control"
 
-  = f.submit t(:save, scope: :actions), class: "btn btn-default"
+    = f.submit t(:save, scope: :actions), class: "btn btn-default"
 
-  = link_to t(:cancel, scope: :actions), task_lists_path, class: "btn btn-danger"
+    = link_to t(:cancel, scope: :actions), task_lists_path, class: "btn btn-danger"

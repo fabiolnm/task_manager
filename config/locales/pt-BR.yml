@@ -1,4 +1,7 @@
 pt-BR:
+  attributes:
+    name: Nome
+
   activerecord:
     models:
       task_list:
