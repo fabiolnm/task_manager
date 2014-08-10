@@ -1,0 +1,6 @@
+ul.list-unstyled
+  - @task_list.tasks.build
+  li = form_for @task_list  do |f|
+    = f.fields_for :tasks   do |tt|
+      = tt.text_field :description, class: 'form-control', placeholder: t('.instructions')
+      = f.submit t(:save, scope: :actions), class: 'sr-only'
