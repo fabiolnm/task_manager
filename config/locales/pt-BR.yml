@@ -7,3 +7,5 @@ pt-BR:
 
   actions:
     create: Criar %{model_name}
+    cancel: Cancelar
+    save:   Salvar

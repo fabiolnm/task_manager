@@ -1,5 +1,3 @@
-h1 New task_list
+= content_for :title, t(:create, scope: :actions, model_name: TaskList.model_name.human)
 
 == render 'form'
-
-= link_to 'Back', task_lists_path
