@@ -10,6 +10,6 @@
 
     = f.text_field :name, class: "form-control"
 
-    = f.submit t(:save, scope: :actions), class: "btn btn-default"
+    = f.submit t(:save, scope: :actions), class: "sr-only"
 
     = link_to t(:cancel, scope: :actions), task_lists_path, class: "btn btn-danger"
