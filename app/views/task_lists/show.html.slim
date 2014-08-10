@@ -1,7 +1,1 @@
-p
-  strong Name:
-  = @task_list.name
-
-= link_to 'Edit', edit_task_list_path(@task_list)
-'|
-= link_to 'Back', task_lists_path
+= content_for :title, t('.title', name: @task_list.name)
