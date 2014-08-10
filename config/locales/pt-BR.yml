@@ -12,3 +12,6 @@ pt-BR:
     create: Criar %{model_name}
     cancel: Cancelar
     save:   Salvar
+
+  success: Operação realizada com sucesso!
+

@@ -12,4 +12,7 @@ html
         .navbar-header
           h2.navbar-text = yield :title
 
+      = render 'flash_message', state: :success, flash_message: notice
+      = render 'flash_message', state: :warning, flash_message: alert
+
       == yield
