@@ -35,6 +35,18 @@ describe TaskListsController do
     assert_response :success
   end
 
+  it "creates nested tasks" do
+    lambda {
+      put :update, id: task_list, task_list: {
+        tasks_attributes: [
+          { description: 'Finish Engage challenge' }
+        ]
+      }
+    }.must_change ->{ Task.count }
+
+    assert_redirected_to task_list
+  end
+
   it "gets edit" do
     get :edit, id: task_list
     assert_response :success
