@@ -44,6 +44,12 @@ class TaskListsController < ApplicationController
     end
   end
 
+  def change_task_status
+    task = Task.find params[:id]
+    task.update closed_at: Time.current
+    redirect_to task.task_list
+  end
+
   # DELETE /task_lists/1
   def destroy
     @task_list.destroy

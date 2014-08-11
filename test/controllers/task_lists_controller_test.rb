@@ -61,6 +61,18 @@ describe TaskListsController do
       "#{Task.human_attribute_name :description} #{error_message :blank}"
   end
 
+  it "closes open task" do
+    task = tasks :open_task
+    raise 'task must be open to avoid false positive' if task.closed_at
+
+    post :change_task_status, id: task, task: { action: 'close' }
+
+
+    assert_redirected_to task.task_list
+
+    task.reload.closed_at.wont_be_nil
+  end
+
   it "gets edit" do
     get :edit, id: task_list
     assert_response :success
