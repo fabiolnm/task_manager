@@ -30,7 +30,7 @@ pt-BR:
     show:
       title: Tarefas da Lista "%{name}"
     form:
-      instructions: Digite um nome e pressione a tecla enter para criar uma lista
+      instructions: Digite um nome para a lista e tecle enter
     tasks:
-      instructions: Digite uma descrição e pressione a tecla enter para criar uma tarefa
+      instructions: Digite a descrição da tarefa tecle enter
 
