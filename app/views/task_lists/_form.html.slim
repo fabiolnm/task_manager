@@ -1,5 +1,5 @@
-= form_for @task_list do |f|
-  - error = @task_list.errors[:name].presence
+= form_for task_list do |f|
+  - error = task_list.errors[:name].presence
 
   = content_tag :div, class: "form-group #{'has-error' if error}"
     - if error

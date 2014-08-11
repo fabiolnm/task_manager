@@ -5,7 +5,7 @@ class TaskListsController < ApplicationController
 
   # GET /task_lists
   def index
-    @task_list  = TaskList.new
+    @new_task_list  = TaskList.new
     @task_lists = TaskList.all
   end
 
@@ -19,10 +19,10 @@ class TaskListsController < ApplicationController
 
   # POST /task_lists
   def create
-    @task_list = TaskList.new task_list_params
+    @new_task_list = TaskList.new task_list_params
 
-    if @task_list.save
-      redirect_to @task_list, notice: t(:success)
+    if @new_task_list.save
+      redirect_to @new_task_list, notice: t(:success)
     else
       @task_lists = TaskList.all
       render :index

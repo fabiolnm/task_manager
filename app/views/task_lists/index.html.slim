@@ -1,6 +1,6 @@
 = content_for :title, TaskList.model_name.human(count: 2)
 
-= render 'form'
+= render 'form', task_list: @new_task_list
 
 ul.list-unstyled#task_list
   - @task_lists.each do |task_list|
