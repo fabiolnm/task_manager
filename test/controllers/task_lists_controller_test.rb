@@ -159,4 +159,14 @@ describe TaskListsController do
 
     assert_redirected_to task.task_list
   end
+
+  it "deletes task via xhr" do
+    task = tasks :closed_task
+
+    lambda {
+      xhr :delete, :delete_task, id: task
+    }.must_change ->{ Task.count }, -1
+
+    assert_redirected_via_turbolinks_to task_list_url task.task_list
+  end
 end

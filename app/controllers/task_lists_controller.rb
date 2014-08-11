@@ -62,7 +62,7 @@ class TaskListsController < ApplicationController
 
     task.destroy
 
-    redirect_to task.task_list
+    redirect task.task_list
   end
 
   # DELETE /task_lists/1

@@ -1,7 +1,8 @@
 ul.list-unstyled#task_list
   - @task_list.tasks.select(&:persisted?).each do |task|
     li
-      = button_to delete_task_path(task), method: :delete,
+      = button_to delete_task_path(task),
+          method: :delete, remote: true, authenticity_token: true,
           form_class: :button_to, class: 'btn btn-danger btn-xs btn-task' do
         span.glyphicon.glyphicon-trash
 
