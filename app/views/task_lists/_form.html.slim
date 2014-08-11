@@ -1,4 +1,4 @@
-= form_for task_list do |f|
+= form_for task_list, remote: true, authenticity_token: true do |f|
   - error = task_list.errors[:name].presence
 
   = content_tag :div, class: "form-group #{'has-error' if error}"

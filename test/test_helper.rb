@@ -32,3 +32,9 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+class ActionController::TestCase
+  def assert_redirected_via_turbolinks_to(url)
+    response.body.must_equal "Turbolinks.visit('#{url}');"
+  end
+end

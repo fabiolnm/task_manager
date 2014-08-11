@@ -22,7 +22,7 @@ class TaskListsController < ApplicationController
     @new_task_list = TaskList.new task_list_params
 
     if @new_task_list.save
-      redirect_to @new_task_list, notice: t(:success)
+      redirect @new_task_list, notice: t(:success)
     else
       @task_lists = TaskList.all
       render :index
@@ -85,5 +85,13 @@ class TaskListsController < ApplicationController
   def set_new_task_and_task_list
     @new_task_list  = TaskList.new
     @task_lists     = TaskList.all
+  end
+
+  def redirect(object, opts={})
+    if request.xhr?
+      redirect_via_turbolinks_to object, opts
+    else
+      redirect_to object, opts
+    end
   end
 end

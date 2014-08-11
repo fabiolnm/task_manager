@@ -19,6 +19,14 @@ describe TaskListsController do
     assert_redirected_to task_list_path assigns :new_task_list
   end
 
+  it "creates task_list via xhr" do
+    lambda {
+      xhr :post, :create, task_list: { name: 'A simple task' }
+    }.must_change ->{ TaskList.count }
+
+    assert_redirected_via_turbolinks_to task_list_url assigns :new_task_list
+  end
+
   it "validates new task_list" do
     lambda {
       post :create, task_list: { name: '' }
