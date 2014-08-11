@@ -10,7 +10,9 @@ ul.list-group#task_list
       - if @edit_task_list && active
         = render 'form', task_list: task_list
       - else
-        = button_to task_list, method: :delete, class: 'btn btn-danger btn-xs btn-task' do
+        = button_to task_list,
+            method: :delete, remote: true,
+            class: 'btn btn-danger btn-xs btn-task' do
           span.glyphicon.glyphicon-trash
 
         = link_to task_list.name, edit_task_list_path(task_list)

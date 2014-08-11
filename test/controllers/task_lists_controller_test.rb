@@ -74,6 +74,16 @@ describe TaskListsController do
     assert_redirected_to :task_lists
   end
 
+  it "destroys task_list via xhr" do
+    lambda {
+      lambda {
+        xhr :delete, :destroy, id: task_list
+      }.must_change ->{ Task.count    }, -task_list.tasks.count
+    }.must_change ->{ TaskList.count  }, -1
+
+    assert_redirected_via_turbolinks_to task_lists_url
+  end
+
   it "creates nested tasks" do
     lambda {
       put :update, id: task_list, task_list: {

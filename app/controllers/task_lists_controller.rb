@@ -68,7 +68,7 @@ class TaskListsController < ApplicationController
   # DELETE /task_lists/1
   def destroy
     @task_list.destroy
-    redirect_to task_lists_url, notice: t(:success)
+    redirect task_lists_url, notice: t(:success)
   end
 
   private
