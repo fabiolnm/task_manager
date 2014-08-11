@@ -1,4 +1,11 @@
 ul.list-unstyled
+  - @task_list.tasks.each do |task|
+    li = form_for @task_list  do |f|
+      = f.fields_for :tasks, task do |tt|
+        = f.submit t(task.change_status_action, scope: :actions),
+            class: 'btn btn-default btn-xs'
+        = task.description
+
   - task = @task_list.tasks.build
   li = form_for @task_list      do |f|
     = f.fields_for :tasks, task do |tt|

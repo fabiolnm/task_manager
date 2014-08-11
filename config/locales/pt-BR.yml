@@ -13,6 +13,8 @@ pt-BR:
     create: Criar %{model_name}
     cancel: Cancelar
     save:   Salvar
+    close:  Concluir
+    reopen: Reabrir
 
   success: Operação realizada com sucesso!
 
