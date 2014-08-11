@@ -90,7 +90,9 @@ describe TaskListsController do
 
   it "gets edit" do
     get :edit, id: task_list
-    assert_response :success
+
+    assert_template :index
+    assert_select "#edit_task_list_#{task_list.id}"
   end
 
   it "updates task_list" do
@@ -100,7 +102,9 @@ describe TaskListsController do
 
   it "validates existing task_list" do
     put :update, id: task_list, task_list: { name: '' }
-    assert_template :edit
+
+    assert_template :index
+    assert_select "#edit_task_list_#{task_list.id}"
   end
 
   it "destroys task_list" do

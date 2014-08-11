@@ -1,5 +1,5 @@
 class TaskListsController < ApplicationController
-  before_action :set_new_task_and_task_list, only: [:index, :show]
+  before_action :set_new_task_and_task_list, only: [:index, :show, :edit]
   before_action :set_task_list, only: [:show, :edit, :update, :destroy]
 
   helper_method :task_list_delete_confirmation_message
@@ -15,6 +15,8 @@ class TaskListsController < ApplicationController
 
   # GET /task_lists/1/edit
   def edit
+    @edit_task_list = @task_list
+    render :index
   end
 
   # POST /task_lists
@@ -38,10 +40,9 @@ class TaskListsController < ApplicationController
 
       if @task_list.errors['tasks.description'].present?
         @task_error = @task_list.errors.full_messages.first
-        render :index
-      else
-        render :edit
       end
+
+      render :index
     end
   end
 

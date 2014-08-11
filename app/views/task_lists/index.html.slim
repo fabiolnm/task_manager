@@ -7,12 +7,15 @@ ul.list-group#task_list
     - active = task_list == @task_list
 
     = content_tag :li, class: "list-group-item #{:active if active}" do
-      = link_to task_list, method: :delete, class: 'btn btn-danger btn-xs btn-task',
-        data: { confirm: task_list_delete_confirmation_message(task_list) } do
-          span.glyphicon.glyphicon-trash
+      - if @edit_task_list && active
+        = render 'form', task_list: task_list
+      - else
+        = link_to task_list, method: :delete, class: 'btn btn-danger btn-xs btn-task',
+          data: { confirm: task_list_delete_confirmation_message(task_list) } do
+            span.glyphicon.glyphicon-trash
 
-      = link_to task_list.name, edit_task_list_path(task_list)
+        = link_to task_list.name, edit_task_list_path(task_list)
 
-      = link_to t(:task_count, count: task_list.tasks.count), task_list, class: :badge
+        = link_to t(:task_count, count: task_list.tasks.count), task_list, class: :badge
 
-      = render "tasks" if active
+        = render "tasks" if active
