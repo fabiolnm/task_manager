@@ -25,5 +25,3 @@ ul.list-unstyled#task_list
 
         = tt.text_field :description, class: 'form-control', placeholder: t('.instructions')
         = f.submit t(:save, scope: :actions), class: 'sr-only'
-
-  = link_to t(:return_to_main_page, scope: :actions), :root, class: 'btn btn-primary'

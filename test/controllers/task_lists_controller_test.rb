@@ -29,7 +29,7 @@ describe TaskListsController do
 
   it "shows task_list" do
     get :show, id: task_list
-    assert_response :success
+    assert_template :index
   end
 
   it "creates nested tasks" do
@@ -53,7 +53,7 @@ describe TaskListsController do
       }
     }.wont_change ->{ Task.count }
 
-    assert_template :show
+    assert_template :index
     assert_select '.has-error label',
       "#{Task.human_attribute_name :description} #{error_message :blank}"
   end

@@ -4,9 +4,13 @@
 
 ul.list-unstyled#task_list
   - @task_lists.each do |task_list|
-    li
+    - active = task_list == @task_list
+
+    = content_tag :li, class: (:active if active) do
       = link_to task_list, method: :delete, class: 'btn btn-danger btn-xs btn-task',
         data: { confirm: task_list_delete_confirmation_message(task_list) } do
           span.glyphicon.glyphicon-trash
 
       = link_to task_list.name, task_list
+
+      = render "tasks" if active

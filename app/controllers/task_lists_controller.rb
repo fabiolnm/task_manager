@@ -1,16 +1,16 @@
 class TaskListsController < ApplicationController
+  before_action :set_new_task_and_task_list, only: [:index, :show]
   before_action :set_task_list, only: [:show, :edit, :update, :destroy]
 
   helper_method :task_list_delete_confirmation_message
 
   # GET /task_lists
   def index
-    @new_task_list  = TaskList.new
-    @task_lists = TaskList.all
   end
 
   # GET /task_lists/1
   def show
+    render :index
   end
 
   # GET /task_lists/1/edit
@@ -34,9 +34,11 @@ class TaskListsController < ApplicationController
     if @task_list.update(task_list_params)
       redirect_to @task_list, notice: t(:success)
     else
+      set_new_task_and_task_list
+
       if @task_list.errors['tasks.description'].present?
         @task_error = @task_list.errors.full_messages.first
-        render :show
+        render :index
       else
         render :edit
       end
@@ -90,5 +92,10 @@ class TaskListsController < ApplicationController
       t :confirm_list_with_tasks_deletion,
         scope: :actions, name: task_list.name, tasks: task_list.tasks.count
     end
+  end
+
+  def set_new_task_and_task_list
+    @new_task_list  = TaskList.new
+    @task_lists     = TaskList.all
   end
 end
