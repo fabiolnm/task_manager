@@ -1,15 +1,12 @@
-= form_for @task_list, html: { class: "form-inline" } do |f|
+= form_for @task_list do |f|
   - error = @task_list.errors[:name].presence
 
   = content_tag :div, class: "form-group #{'has-error' if error}"
     - if error
       = f.label :name, error.first, class: 'control-label'
-      br
     - else
       = f.label :name, class: 'sr-only'
 
-    = f.text_field :name, class: "form-control"
+    = f.text_field :name, class: "form-control", placeholder: t('.instructions')
 
     = f.submit t(:save, scope: :actions), class: "sr-only"
-
-    = link_to t(:cancel, scope: :actions), task_lists_path, class: "btn btn-danger"

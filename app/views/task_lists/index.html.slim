@@ -1,5 +1,7 @@
 = content_for :title, TaskList.model_name.human(count: 2)
 
+= render 'form'
+
 ul.list-unstyled#task_list
   - @task_lists.each do |task_list|
     li
@@ -8,7 +10,3 @@ ul.list-unstyled#task_list
           span.glyphicon.glyphicon-trash
 
       = link_to task_list.name, task_list
-
-= link_to t(:create,
-  scope: :actions, model_name: TaskList.model_name.human),
-  new_task_list_path, class: "btn btn-default"

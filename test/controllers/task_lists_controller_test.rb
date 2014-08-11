@@ -6,7 +6,9 @@ describe TaskListsController do
   it "gets index" do
     get :index
     assert_response :success
-    assigns(:task_lists).wont_be_nil
+
+    assert_select "form#new_task_list"
+    assert_select "ul#task_list li", count: TaskList.count
   end
 
   it "creates task_list" do

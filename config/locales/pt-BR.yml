@@ -24,6 +24,8 @@ pt-BR:
   task_lists:
     show:
       title: Tarefas da Lista "%{name}"
+    form:
+      instructions: Digite um nome e pressione a tecla enter para criar uma lista
     tasks:
       instructions: Digite uma descrição e pressione a tecla enter para criar uma tarefa
 
