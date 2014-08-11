@@ -32,7 +32,7 @@ class TaskListsController < ApplicationController
   # PATCH/PUT /task_lists/1
   def update
     if @task_list.update(task_list_params)
-      redirect_to @task_list, notice: t(:success)
+      redirect @task_list, notice: t(:success)
     else
       set_new_task_and_task_list
 

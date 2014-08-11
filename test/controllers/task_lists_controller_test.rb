@@ -52,6 +52,11 @@ describe TaskListsController do
     assert_redirected_to task_list_path assigns :task_list
   end
 
+  it "updates task_list via xhr" do
+    xhr :put, :update, id: task_list, task_list: { name: 'A hard task' }
+    assert_redirected_via_turbolinks_to task_list_url task_list
+  end
+
   it "validates existing task_list" do
     put :update, id: task_list, task_list: { name: '' }
 
