@@ -10,7 +10,7 @@ ul.list-group#task_list
       - if @edit_task_list && active
         = render 'form', task_list: task_list
       - else
-        = link_to task_list, method: :delete, class: 'btn btn-danger btn-xs btn-task',
+        = button_to task_list, method: :delete, class: 'btn btn-danger btn-xs btn-task',
           data: { confirm: task_list_delete_confirmation_message(task_list) } do
             span.glyphicon.glyphicon-trash
 

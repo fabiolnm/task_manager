@@ -1,20 +1,21 @@
 ul.list-unstyled#task_list
   - @task_list.tasks.select(&:persisted?).each do |task|
-    li = form_tag change_task_status_path(task) do
-      - action = task.change_status_action
-      = hidden_field_tag :task_action, action
-
-      = link_to delete_task_path(task), method: :delete,
-          class: 'btn btn-danger btn-xs btn-task' do
+    li
+      = button_to delete_task_path(task), method: :delete,
+          form_class: :button_to, class: 'btn btn-danger btn-xs btn-task' do
         span.glyphicon.glyphicon-trash
 
-      = submit_tag t(action, scope: :actions),
-          class: 'btn btn-default btn-xs btn-task'
+      = form_tag change_task_status_path(task), class: 'inline-form' do
+        - action = task.change_status_action
+        = hidden_field_tag :task_action, action
 
-      - if task.closed_at.nil?
-        = task.description
-      - else
-        span.closed = task.description
+        = submit_tag t(action, scope: :actions),
+            class: 'btn btn-default btn-xs btn-task'
+
+        - if task.closed_at.nil?
+          = task.description
+        - else
+          span.closed = task.description
 
   - task = @task_list.tasks.build
   li = form_for @task_list      do |f|
