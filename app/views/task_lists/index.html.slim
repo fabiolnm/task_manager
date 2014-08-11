@@ -1,20 +1,13 @@
 = content_for :title, TaskList.model_name.human(count: 2)
 
-table.table.table-striped
-  thead
-    tr
-      th
-      th
-      th
-      th
+ul.list-unstyled#task_list
+  - @task_lists.each do |task_list|
+    li
+      = link_to task_list, method: :delete, class: 'btn btn-danger btn-xs btn-task',
+        data: { confirm: task_list_delete_confirmation_message(task_list) } do
+          span.glyphicon.glyphicon-trash
 
-  tbody
-    - @task_lists.each do |task_list|
-      tr
-        td = task_list.name
-        td = link_to 'Show', task_list
-        td = link_to 'Edit', edit_task_list_path(task_list)
-        td = link_to 'Destroy', task_list, data: {:confirm => 'Are you sure?'}, :method => :delete
+      = link_to task_list.name, task_list
 
 = link_to t(:create,
   scope: :actions, model_name: TaskList.model_name.human),
