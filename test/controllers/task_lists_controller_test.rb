@@ -130,6 +130,26 @@ describe TaskListsController do
     task.reload.closed_at.must_be_nil
   end
 
+  it "closes open task via xhr" do
+    task = tasks :open_task
+    raise 'task must be open to avoid false positive' if task.closed_at
+
+    xhr :post, :change_task_status, id: task, task_action: 'close'
+    assert_redirected_via_turbolinks_to task_list_url task.task_list
+
+    task.reload.closed_at.wont_be_nil
+  end
+
+  it "reopens closed task via xhr" do
+    task = tasks :closed_task
+    raise 'task must be closed to avoid false positive' unless task.closed_at
+
+    xhr :post, :change_task_status, id: task, task_action: 'reopen'
+    assert_redirected_via_turbolinks_to task_list_url task.task_list
+
+    task.reload.closed_at.must_be_nil
+  end
+
   it "deletes task" do
     task = tasks :closed_task
 

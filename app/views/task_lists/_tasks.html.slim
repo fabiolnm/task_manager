@@ -5,7 +5,8 @@ ul.list-unstyled#task_list
           form_class: :button_to, class: 'btn btn-danger btn-xs btn-task' do
         span.glyphicon.glyphicon-trash
 
-      = form_tag change_task_status_path(task), class: 'inline-form' do
+      = form_tag change_task_status_path(task), class: 'inline-form',
+          remote: true, authenticity_token: true do
         - action = task.change_status_action
         = hidden_field_tag :task_action, action
 

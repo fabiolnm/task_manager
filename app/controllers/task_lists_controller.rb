@@ -54,7 +54,7 @@ class TaskListsController < ApplicationController
       task.update closed_at: nil
     end
 
-    redirect_to task.task_list
+    redirect task.task_list
   end
 
   def delete_task

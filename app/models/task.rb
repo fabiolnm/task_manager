@@ -3,6 +3,8 @@ class Task < ActiveRecord::Base
 
   validates :task_list, :description, presence: true
 
+  default_scope { order created_at: :asc }
+
   def change_status_action
     closed_at ? :reopen : :close
   end
