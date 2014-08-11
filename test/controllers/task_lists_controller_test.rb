@@ -81,6 +81,16 @@ describe TaskListsController do
     task.reload.closed_at.must_be_nil
   end
 
+  it "deletes task" do
+    task = tasks :closed_task
+
+    lambda {
+      delete :delete_task, id: task
+    }.must_change ->{ Task.count }, -1
+
+    assert_redirected_to task.task_list
+  end
+
   it "gets edit" do
     get :edit, id: task_list
     assert_response :success

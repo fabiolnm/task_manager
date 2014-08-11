@@ -57,6 +57,14 @@ class TaskListsController < ApplicationController
     redirect_to task.task_list
   end
 
+  def delete_task
+    task = Task.find params[:id]
+
+    task.destroy
+
+    redirect_to task.task_list
+  end
+
   # DELETE /task_lists/1
   def destroy
     @task_list.destroy

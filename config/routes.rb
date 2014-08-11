@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   post 'change_task_status/:id', to: 'task_lists#change_task_status', as: :change_task_status
 
+  delete 'delete_task/:id', to: 'task_lists#delete_task', as: :delete_task
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
