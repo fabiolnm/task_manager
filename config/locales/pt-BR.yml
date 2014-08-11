@@ -21,8 +21,6 @@ pt-BR:
     close:  Concluir
     reopen: Reabrir
     return_to_main_page: Retornar à página principal
-    confirm_list_without_tasks_deletion: Confirma remoção da lista "%{name}"?
-    confirm_list_with_tasks_deletion: Confirma remoção da lista "%{name}" e de suas %{tasks} tarefas?
 
   success: Operação realizada com sucesso!
 

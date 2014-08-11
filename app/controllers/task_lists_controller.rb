@@ -2,8 +2,6 @@ class TaskListsController < ApplicationController
   before_action :set_new_task_and_task_list, only: [:index, :show, :edit]
   before_action :set_task_list, only: [:show, :edit, :update, :destroy]
 
-  helper_method :task_list_delete_confirmation_message
-
   # GET /task_lists
   def index
   end
@@ -82,17 +80,6 @@ class TaskListsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def task_list_params
     params[:task_list].permit :name, tasks_attributes: [ :description ]
-  end
-
-  def task_list_delete_confirmation_message(task_list)
-    tasks_count = task_list.tasks.count
-    if tasks_count == 0
-      t :confirm_list_without_tasks_deletion,
-        scope: :actions, name: task_list.name
-    else
-      t :confirm_list_with_tasks_deletion,
-        scope: :actions, name: task_list.name, tasks: task_list.tasks.count
-    end
   end
 
   def set_new_task_and_task_list
