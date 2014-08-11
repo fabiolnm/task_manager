@@ -108,8 +108,10 @@ describe TaskListsController do
 
   it "destroys task_list" do
     lambda {
-      delete :destroy, id: task_list
-    }.must_change ->{ TaskList.count }, -1
+      lambda {
+        delete :destroy, id: task_list
+      }.must_change ->{ Task.count    }, -task_list.tasks.count
+    }.must_change ->{ TaskList.count  }, -1
 
     assert_redirected_to :task_lists
   end
