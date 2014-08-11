@@ -1,6 +1,10 @@
 ul.list-unstyled
-  - @task_list.tasks.build
-  li = form_for @task_list  do |f|
-    = f.fields_for :tasks   do |tt|
-      = tt.text_field :description, class: 'form-control', placeholder: t('.instructions')
-      = f.submit t(:save, scope: :actions), class: 'sr-only'
+  - task = @task_list.tasks.build
+  li = form_for @task_list      do |f|
+    = f.fields_for :tasks, task do |tt|
+      = content_tag :div, class: "form-group #{'has-error' if @task_error}"
+        = tt.label :description, class: 'sr-only' unless @task_error
+        = tt.label :description, @task_error, class: 'control-label' if @task_error
+
+        = tt.text_field :description, class: 'form-control', placeholder: t('.instructions')
+        = f.submit t(:save, scope: :actions), class: 'sr-only'

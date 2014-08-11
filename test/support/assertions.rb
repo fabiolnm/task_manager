@@ -29,10 +29,16 @@ module Minitest::Assertions
     subject.send "#{attribute}=", value
     subject.valid?
     errors = subject.errors.messages[attribute] || []
-    errors.send assertion, I18n.t("errors.messages.#{error_key}"), message {
+
+    # errors.[must|wont]_include error_message, assertion_message
+    errors.send assertion, error_message(error_key), message {
       value = :nil    if value.nil?
       value = :blank  if value.blank?
       "validating #{subject.class.name} with :#{attribute} set to #{value}"
     }
+  end
+
+  def error_message(error_key)
+    I18n.t "errors.messages.#{error_key}"
   end
 end

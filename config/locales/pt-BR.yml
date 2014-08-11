@@ -1,6 +1,7 @@
 pt-BR:
   attributes:
     name: Nome
+    description: Descrição
 
   activerecord:
     models:

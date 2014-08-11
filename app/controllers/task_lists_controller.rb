@@ -35,7 +35,12 @@ class TaskListsController < ApplicationController
     if @task_list.update(task_list_params)
       redirect_to @task_list, notice: t(:success)
     else
-      render :edit
+      if @task_list.errors['tasks.description'].present?
+        @task_error = @task_list.errors.full_messages.first
+        render :show
+      else
+        render :edit
+      end
     end
   end
 

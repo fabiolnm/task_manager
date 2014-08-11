@@ -47,6 +47,20 @@ describe TaskListsController do
     assert_redirected_to task_list
   end
 
+  it "validates nested tasks" do
+    lambda {
+      put :update, id: task_list, task_list: {
+        tasks_attributes: [
+          { description: '' }
+        ]
+      }
+    }.wont_change ->{ Task.count }
+
+    assert_template :show
+    assert_select '.has-error label',
+      "#{Task.human_attribute_name :description} #{error_message :blank}"
+  end
+
   it "gets edit" do
     get :edit, id: task_list
     assert_response :success
