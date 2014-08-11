@@ -12,11 +12,6 @@ class TaskListsController < ApplicationController
   def show
   end
 
-  # GET /task_lists/new
-  def new
-    @task_list = TaskList.new
-  end
-
   # GET /task_lists/1/edit
   def edit
   end
@@ -28,7 +23,8 @@ class TaskListsController < ApplicationController
     if @task_list.save
       redirect_to @task_list, notice: t(:success)
     else
-      render :new
+      @task_lists = TaskList.all
+      render :index
     end
   end
 

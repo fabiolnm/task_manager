@@ -9,11 +9,6 @@ describe TaskListsController do
     assigns(:task_lists).wont_be_nil
   end
 
-  it "gets new" do
-    get :new
-    assert_response :success
-  end
-
   it "creates task_list" do
     lambda {
       post :create, task_list: { name: 'A simple task' }
@@ -27,7 +22,7 @@ describe TaskListsController do
       post :create, task_list: { name: '' }
     }.wont_change ->{ TaskList.count }
 
-    assert_template :new
+    assert_template :index
   end
 
   it "shows task_list" do

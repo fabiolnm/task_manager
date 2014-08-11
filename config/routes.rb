@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'task_lists#index'
 
-  resources :task_lists
+  resources :task_lists, except: :new
 
   post 'change_task_status/:id', to: 'task_lists#change_task_status', as: :change_task_status
 
