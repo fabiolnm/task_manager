@@ -40,6 +40,35 @@ describe TaskListsController do
     assert_template :index
   end
 
+  it "gets edit" do
+    get :edit, id: task_list
+
+    assert_template :index
+    assert_select "#edit_task_list_#{task_list.id}"
+  end
+
+  it "updates task_list" do
+    put :update, id: task_list, task_list: { name: 'A hard task' }
+    assert_redirected_to task_list_path assigns :task_list
+  end
+
+  it "validates existing task_list" do
+    put :update, id: task_list, task_list: { name: '' }
+
+    assert_template :index
+    assert_select "#edit_task_list_#{task_list.id}"
+  end
+
+  it "destroys task_list" do
+    lambda {
+      lambda {
+        delete :destroy, id: task_list
+      }.must_change ->{ Task.count    }, -task_list.tasks.count
+    }.must_change ->{ TaskList.count  }, -1
+
+    assert_redirected_to :task_lists
+  end
+
   it "creates nested tasks" do
     lambda {
       put :update, id: task_list, task_list: {
@@ -94,34 +123,5 @@ describe TaskListsController do
     }.must_change ->{ Task.count }, -1
 
     assert_redirected_to task.task_list
-  end
-
-  it "gets edit" do
-    get :edit, id: task_list
-
-    assert_template :index
-    assert_select "#edit_task_list_#{task_list.id}"
-  end
-
-  it "updates task_list" do
-    put :update, id: task_list, task_list: { name: 'A hard task' }
-    assert_redirected_to task_list_path assigns :task_list
-  end
-
-  it "validates existing task_list" do
-    put :update, id: task_list, task_list: { name: '' }
-
-    assert_template :index
-    assert_select "#edit_task_list_#{task_list.id}"
-  end
-
-  it "destroys task_list" do
-    lambda {
-      lambda {
-        delete :destroy, id: task_list
-      }.must_change ->{ Task.count    }, -task_list.tasks.count
-    }.must_change ->{ TaskList.count  }, -1
-
-    assert_redirected_to :task_lists
   end
 end
