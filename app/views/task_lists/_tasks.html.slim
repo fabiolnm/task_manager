@@ -18,7 +18,7 @@ ul.list-unstyled#task_list
           span.closed = task.description
 
   - task = @task_list.tasks.build
-  li = form_for @task_list      do |f|
+  li = form_for @task_list, remote: true, authenticity_token: true do |f|
     = f.fields_for :tasks, task do |tt|
       = content_tag :div, class: "form-group #{'has-error' if @task_error}"
         = tt.label :description, class: 'sr-only' unless @task_error
