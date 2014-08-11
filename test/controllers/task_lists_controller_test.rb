@@ -65,12 +65,20 @@ describe TaskListsController do
     task = tasks :open_task
     raise 'task must be open to avoid false positive' if task.closed_at
 
-    post :change_task_status, id: task, task: { action: 'close' }
-
-
+    post :change_task_status, id: task, task_action: 'close'
     assert_redirected_to task.task_list
 
     task.reload.closed_at.wont_be_nil
+  end
+
+  it "reopens closed task" do
+    task = tasks :closed_task
+    raise 'task must be closed to avoid false positive' unless task.closed_at
+
+    post :change_task_status, id: task, task_action: 'reopen'
+    assert_redirected_to task.task_list
+
+    task.reload.closed_at.must_be_nil
   end
 
   it "gets edit" do

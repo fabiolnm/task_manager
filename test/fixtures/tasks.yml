@@ -1,3 +1,8 @@
 open_task:
   task_list:    one
   description:  An open task
+
+closed_task:
+  task_list:    one
+  description:  A closed task
+  closed_at:    <%= 1.day.ago %>

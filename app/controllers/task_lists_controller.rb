@@ -46,7 +46,14 @@ class TaskListsController < ApplicationController
 
   def change_task_status
     task = Task.find params[:id]
-    task.update closed_at: Time.current
+
+    case params[:task_action]
+    when 'close'
+      task.update closed_at: Time.current
+    when 'reopen'
+      task.update closed_at: nil
+    end
+
     redirect_to task.task_list
   end
 

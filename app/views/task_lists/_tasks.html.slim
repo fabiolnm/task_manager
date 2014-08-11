@@ -2,6 +2,7 @@ ul.list-unstyled
   - @task_list.tasks.select(&:persisted?).each do |task|
     li = form_tag change_task_status_path(task) do
       - action = task.change_status_action
+      = hidden_field_tag :task_action, action
       = submit_tag t(action, scope: :actions),
           class: 'btn btn-default btn-xs'
       = task.description
