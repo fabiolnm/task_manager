@@ -8,5 +8,7 @@
       = f.label :name, class: 'sr-only'
 
     = f.text_field :name, class: "form-control", placeholder: t('.instructions')
+    - if @edit_task_list && task_list.persisted?
+      p.help-block = t '.edit_instructions'
 
     = f.submit t(:save, scope: :actions), class: "sr-only"

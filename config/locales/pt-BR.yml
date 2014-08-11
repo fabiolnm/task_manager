@@ -31,6 +31,7 @@ pt-BR:
       title: Tarefas da Lista "%{name}"
     form:
       instructions: Digite um nome para a lista e tecle enter
+      edit_instructions: Edite a descrição da tarefa e tecle enter
     tasks:
       instructions: Digite a descrição da tarefa tecle enter
 
