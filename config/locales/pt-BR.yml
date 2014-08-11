@@ -9,6 +9,11 @@ pt-BR:
         one: Lista de Tarefas
         other: Listas de Tarefas
 
+  task_count:
+    zero: Nenhuma tarefa
+    one: 1 tarefa
+    other: "%{count} tarefas"
+
   actions:
     create: Criar %{model_name}
     cancel: Cancelar

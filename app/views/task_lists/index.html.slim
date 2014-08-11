@@ -11,6 +11,8 @@ ul.list-unstyled#task_list
         data: { confirm: task_list_delete_confirmation_message(task_list) } do
           span.glyphicon.glyphicon-trash
 
-      = link_to task_list.name, task_list
+      = link_to task_list.name, edit_task_list_path(task_list)
+
+      = link_to t(:task_count, count: task_list.tasks.count), task_list, class: :badge
 
       = render "tasks" if active
